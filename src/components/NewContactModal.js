@@ -1,24 +1,25 @@
-import React , {useRef} from "react";
+import React, { useRef } from "react";
 import {
   Button,
   Form,
   FormControl,
   FormGroup,
   FormLabel,
-  Modal,
   ModalBody,
 } from "react-bootstrap";
 import ModalHeader from "react-bootstrap/esm/ModalHeader";
+import { useContacts } from "../contexts/ContactsProvider";
 
 export default function NewContactModal({ closeModal }) {
+  const idRef = useRef();
+  const nameRef = useRef();
+  const { createContact } = useContacts();
 
-    const idRef = useRef();
-    const nameRef = useRef();
   function handleSubmit(event) {
     event.preventDefault();
-    // createContact(idRef.current.value , nameRef.current.value);
+    createContact(idRef.current.value, nameRef.current.value);
 
-    closeModal()
+    closeModal();
   }
 
   return (
